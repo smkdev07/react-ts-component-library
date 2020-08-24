@@ -8,7 +8,7 @@ interface SMKInputProps {
   type: 'email' | 'number' | 'password' | 'tel' | 'text' | 'url';
   id: string;
   label: string;
-  initialValue: string | number;
+  value: string | number;
   name?: string;
   autoComplete?: 'on' | 'off';
   disabled?: boolean;
@@ -19,16 +19,16 @@ interface SMKInputProps {
   min?: number;
   max?: number;
   step?: number;
+  onInputChange: (inputValue: string) => void;
 }
 
 const SMKInput: React.FC<SMKInputProps> = ({
   type,
   id,
   label,
-  initialValue,
+  onInputChange,
   ...props
 }) => {
-  const [inputValue, setInputValue] = useState(initialValue);
   const [inputTouched, setInputTouched] = useState(false);
   const [inputIsValid, setInputIsValid] = useState(false);
   const [inputErrorMessage, setInputErrorMessage] = useState('');
@@ -36,7 +36,7 @@ const SMKInput: React.FC<SMKInputProps> = ({
   const onChangeHandler = (event: ChangeEvent<HTMLInputElement>) => {
     event.persist();
     !inputTouched && setInputTouched((prevState) => true);
-    setInputValue((prevState) => event.target.value);
+    onInputChange(event.target.value);
   };
 
   const onBlurHandler = (event: FocusEvent<HTMLInputElement>) => {
@@ -76,7 +76,6 @@ const SMKInput: React.FC<SMKInputProps> = ({
       <input
         type={type}
         id={id}
-        value={inputValue}
         {...props}
         onChange={(event) => onChangeHandler(event)}
         onBlur={(event) => onBlurHandler(event)}
