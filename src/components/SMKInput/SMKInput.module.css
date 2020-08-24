@@ -1,0 +1,73 @@
+@import url('https://fonts.googleapis.com/css2?family=Nunito&display=swap');
+
+:root {
+  --normal-text-color: #121212;
+  --valid-text-color: #33d9b2;
+  --error-text-color: #ff5252;
+  --accent-color: #34ace0;
+  --dark-color: #84817a;
+}
+
+* {
+  box-sizing: border-box;
+  font-family: 'Nunito', sans-serif;
+  margin: 0;
+  padding: 0;
+}
+
+.SMKIputContainer {
+  display: flex;
+  flex-direction: column;
+  justify-items: flex-start;
+  align-items: flex-start;
+  padding: 0.25rem;
+  width: 100%;
+}
+
+.SMKInputLabel {
+  color: var(--normal-text-color);
+  font-size: 1rem;
+}
+
+.SMKInputRequired {
+  color: var(--error-text-color);
+  font-size: 1rem;
+  margin-left: 2px;
+}
+
+.SMKInput {
+  color: var(--normal-text-color);
+  background-color: transparent;
+  font-size: 1.2rem;
+  border: none;
+  border-bottom: 2px solid var(--normal-text-color);
+  outline: none;
+  width: 100%;
+}
+
+.SMKInputValid {
+  border-bottom: 2px solid var(--valid-text-color);
+}
+
+.SMKInputError {
+  border-bottom: 2px solid var(--error-text-color);
+}
+
+.SMKInput:placeholder-shown {
+  color: var(--dark-color);
+}
+
+.SMKInput:focus {
+  border-bottom: 2px solid var(--accent-color);
+}
+
+.SMKInput:disabled {
+  background-color: var(--dark-color);
+  opacity: 0.1;
+}
+
+.SMKInputErrorText {
+  color: var(--error-text-color);
+  font-size: 0.8rem;
+  margin-top: 2px;
+}
