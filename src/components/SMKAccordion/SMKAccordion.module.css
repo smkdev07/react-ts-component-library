@@ -1,0 +1,42 @@
+* {
+  box-sizing: border-box;
+  font-family: 'Nunito', sans-serif;
+  margin: 0;
+  padding: 0;
+  scroll-behavior: smooth;
+}
+
+.SMKAccordionContainer {
+  border-radius: 4px;
+  box-shadow: 0 3px 6px rgba(0, 0, 0, 0.16), 0 3px 6px rgba(0, 0, 0, 0.23);
+}
+
+.SMKAccordionItem {
+  border-bottom: 1px solid rgb(211, 211, 211);
+}
+
+.header {
+  display: grid;
+  grid-template-columns: 1fr auto;
+  align-items: center;
+  color: #33d9b2;
+  padding: 1rem 1.5rem;
+  cursor: pointer;
+  user-select: none;
+}
+
+.actionIcon {
+  font-size: 1.5rem;
+  font-weight: bold;
+  color: #33d9b2;
+  transition: all 0.3s;
+  transform: scaleX(2.5);
+}
+
+.isExpanded {
+  transform: rotate(-180deg) scaleX(2.25);
+}
+
+.content {
+  padding: 1rem 1.5rem;
+}
