@@ -1,0 +1,29 @@
+@import '../../styles/shared.scss';
+
+.container {
+  display: grid;
+  grid-template-columns: 1fr auto;
+  grid-gap: 1rem;
+  align-items: center;
+  background-color: map-get($color-scheme, primary);
+  @include box-shadow();
+  padding: 1rem;
+
+  h2 {
+    color: map-get($color-scheme, light);
+  }
+
+  ul {
+    display: grid;
+    grid-gap: 1rem;
+    grid-auto-flow: column;
+  }
+
+  li {
+    display: inline;
+  }
+
+  @media screen and (max-width: 768px) {
+    grid-template-columns: 1fr;
+  }
+}

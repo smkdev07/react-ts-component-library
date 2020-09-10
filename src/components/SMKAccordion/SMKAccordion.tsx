@@ -1,6 +1,6 @@
 import React from 'react';
 
-import classes from './SMKAccordion.module.css';
+import classes from './SMKAccordion.module.scss';
 
 export interface AccordionItem {
   title: string;
@@ -17,27 +17,20 @@ const SMKAccordion: React.FC<SMKAccordionProps> = ({
   items,
   onClickHandler,
 }) => {
-  const toggleItemHandler = (
-    event: React.MouseEvent<HTMLParagraphElement, MouseEvent>,
-    index: number
-  ) => {
-    onClickHandler(index);
-  };
-
   return (
-    <div className={classes.SMKAccordionContainer}>
+    <div className={classes.container}>
       {items.map((item, index) => (
-        <div className={classes.SMKAccordionItem} key={item.title}>
+        <div className={classes.item} key={item.title}>
           <div
             className={classes.header}
-            onClick={(event) => toggleItemHandler(event, index)}
+            onClick={() => onClickHandler(index)}
           >
             <h4>{item.title}</h4>
             <p
               className={
                 item.isExpanded
-                  ? [classes.actionIcon, classes.isExpanded].join(' ')
-                  : classes.actionIcon
+                  ? [classes.icon, classes.expanded].join(' ')
+                  : classes.icon
               }
             >
               ^

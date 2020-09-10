@@ -1,96 +1,130 @@
 import React, { useState } from 'react';
 
+import classes from './App.module.scss';
+
 import SMKToolbar from './components/SMKToolbar/SMKToolbar';
+import SMKSwitch from './components/SMKSwitch/SMKSwitch';
 import SMKCard from './components/SMKCard/SMKCard';
-import SMKAccordion, {
-  AccordionItem,
-} from './components/SMKAccordion/SMKAccordion';
+import SMKAccordion from './components/SMKAccordion/SMKAccordion';
 import SMKProgressBar from './components/SMKProgressBar/SMKProgressBar';
-import SMKInput from './components/SMKInput/SMKInput';
 import SMKButton from './components/SMKButton/SMKButton';
 
 const App: React.FC = () => {
-  const [items, setItems] = useState([
-    {
-      title: 'Test 1',
-      content:
-        'Lorem ipsum dolor sit amet, consectetur adipisicing elit. Nemo reiciendis nobis blanditiis facere, animi rerum natus quidem adipisci quae similique?',
-      isExpanded: false,
-    },
-    {
-      title: 'Test 2',
-      content:
-        'Lorem ipsum dolor sit amet, consectetur adipisicing elit. Nemo reiciendis nobis blanditiis facere, animi rerum natus quidem adipisci quae similique?',
-      isExpanded: true,
-    },
-    {
-      title: 'Test 3',
-      content:
-        'Lorem ipsum dolor sit amet, consectetur adipisicing elit. Nemo reiciendis nobis blanditiis facere, animi rerum natus quidem adipisci quae similique?',
-      isExpanded: false,
-    },
-  ]);
-  const [progress, setProgress] = useState(0);
+  const [switchValue, setSwitchValue] = useState(false);
+  const [accordionItems, setAccordionItems] = useState(SAMPLE_ACCORDION_ITEMS);
+  const [progressValue, setProgressValue] = useState(25);
+
+  const toggleAccordionItem = (index: number) => {
+    setAccordionItems((prevState) => {
+      const updatedAccordionItems = [...prevState];
+      const updatedAccordionItem = { ...updatedAccordionItems[index] };
+      updatedAccordionItem.isExpanded = !updatedAccordionItem.isExpanded;
+      updatedAccordionItems[index] = updatedAccordionItem;
+      return updatedAccordionItems;
+    });
+  };
+
+  const updateProgressValue = () => {
+    setProgressValue((prevState) => {
+      if (prevState === 100) {
+        return prevState;
+      }
+      return prevState + 25;
+    });
+  };
+
   return (
-    <div>
-      <SMKToolbar title="SMK Component Library">
-        <ul>
-          <li>Link 1</li>
-          <li>Link 2</li>
-          <li>Link 3</li>
-          <li>Link 4</li>
-          <li>Link 5</li>
-        </ul>
+    <div className={classes.container}>
+      <SMKToolbar title="SMK Component Libary">
+        <nav>
+          <ul>
+            <li>Home</li>
+            <li>About</li>
+            <li style={{ display: 'flex', alignItems: 'center' }}>
+              <span role="img" aria-label="light mode">
+                🌞
+              </span>
+              <SMKSwitch
+                id="switch"
+                checked={switchValue}
+                onChangeHandler={() =>
+                  setSwitchValue((prevState) => !prevState)
+                }
+              />
+              <span role="img" aria-label="dark mode">
+                🌒
+              </span>
+            </li>
+          </ul>
+        </nav>
       </SMKToolbar>
-      <div style={{ margin: '1rem', padding: '1rem' }}>
-        <SMKCard title="Card Title" subTitle="card sub-title">
-          <p>
-            Lorem ipsum dolor sit amet consectetur adipisicing elit. Natus,
-            mollitia delectus aliquam totam, sint commodi, aliquid beatae
-            tempora eum possimus repellat et quos maiores neque!
-          </p>
-        </SMKCard>
-      </div>
-      <div style={{ width: '75%', margin: '0 auto' }}>
-        <SMKAccordion
-          items={items}
-          onClickHandler={(index) => {
-            const updatedItems = [...items];
-            const updatedItem = { ...items[index] };
-            updatedItem.isExpanded = !updatedItem.isExpanded;
-            updatedItems[index] = updatedItem;
-            setItems((prevState) => updatedItems);
-          }}
-        />
-      </div>
-      <SMKProgressBar currentValue={progress} maxValue={100} />
-      <SMKButton
-        id="update-progress"
-        label="Update Progress"
-        onClickHandler={() =>
-          setProgress((prevState) => {
-            if (prevState < 100) return prevState + 10;
-            else return 100;
-          })
-        }
-      />
-      {/* <SMKInput
-        id="full-name"
-        label="Full Name"
-        onInputChange={(inputValue) => setFullName((prevState) => inputValue)}
-        type="text"
-        value={fullName}
-        required
-      />
-      <SMKButton
-        id="my-button"
-        label="Pres Me"
-        onClickHandler={() => console.log('Pressed!')}
-      /> */}
+      <main>
+        <section className={classes.cards}>
+          <div className={classes.card}>
+            <SMKCard title="Card" subTitle="Sample 1">
+              Lorem ipsum dolor sit amet consectetur adipisicing elit. Est
+              similique molestiae illum repellendus illo et nostrum temporibus
+              sit officiis necessitatibus dolore, aliquam ut dignissimos
+              deserunt!
+            </SMKCard>
+          </div>
+          <div className={classes.card}>
+            <SMKCard title="Card" subTitle="Sample 2">
+              Lorem ipsum dolor sit amet consectetur adipisicing elit. Aut quod
+              laboriosam quos, adipisci dolor architecto rerum hic, perferendis
+              quaerat sequi soluta earum at iure atque!
+            </SMKCard>
+          </div>
+          <div className={classes.card}>
+            <SMKCard title="Card" subTitle="Sample 3">
+              Lorem ipsum, dolor sit amet consectetur adipisicing elit. Ducimus
+              excepturi enim sunt incidunt fugiat, tenetur ex eligendi, quasi,
+              iure doloremque eaque! Esse repellendus et quas!
+            </SMKCard>
+          </div>
+        </section>
+        <section className={classes.accordion}>
+          <SMKAccordion
+            items={accordionItems}
+            onClickHandler={toggleAccordionItem}
+          />
+        </section>
+        <section className={classes.progressbar}>
+          <SMKProgressBar currentValue={progressValue} maxValue={100} />
+          <div>
+            <SMKButton
+              id="update-progress"
+              label="Update Progress"
+              type="button"
+              onClickHandler={updateProgressValue}
+            />
+          </div>
+        </section>
+      </main>
+      <footer>© SMK 2020. All Rights Reserved.</footer>
     </div>
   );
 };
 
 export default App;
 
-const TEST_ITEMS: AccordionItem[] = [];
+const SAMPLE_ACCORDION_ITEMS = [
+  {
+    title: 'Accordion Item 1',
+    content:
+      'Lorem ipsum dolor sit amet, consectetur adipisicing elit. Nemo reiciendis nobis blanditiis facere, animi rerum natus quidem adipisci quae similique?',
+    isExpanded: false,
+  },
+  {
+    title: 'Accordion Item 2',
+    content:
+      'Lorem ipsum dolor sit amet, consectetur adipisicing elit. Nemo reiciendis nobis blanditiis facere, animi rerum natus quidem adipisci quae similique?',
+    isExpanded: true,
+  },
+  {
+    title: 'Accordion Item 3',
+    content:
+      'Lorem ipsum dolor sit amet, consectetur adipisicing elit. Nemo reiciendis nobis blanditiis facere, animi rerum natus quidem adipisci quae similique?',
+    isExpanded: false,
+  },
+];

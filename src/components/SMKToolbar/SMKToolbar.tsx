@@ -1,18 +1,17 @@
 import React from 'react';
 
-import classes from './SMKToolbar.module.css';
+import classes from './SMKToolbar.module.scss';
 
 interface SMKToolbarProps {
-  id?: string;
   title: string;
 }
 
 const SMKToolbar: React.FC<SMKToolbarProps> = ({ title, ...props }) => {
   return (
-    <div className={classes.SMKToolbarContainer}>
+    <header className={classes.container}>
       <h2>{title}</h2>
       {props.children}
-    </div>
+    </header>
   );
 };
 

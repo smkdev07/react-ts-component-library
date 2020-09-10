@@ -1,6 +1,6 @@
 import React from 'react';
 
-import classes from './SMKProgressBar.module.css';
+import classes from './SMKProgressBar.module.scss';
 
 interface SMKProgressBarProps {
   currentValue: number;
@@ -12,7 +12,7 @@ const SMKProgressBar: React.FC<SMKProgressBarProps> = ({
   maxValue,
 }) => {
   return (
-    <div className={classes.SMKProgressBarContainer}>
+    <div className={classes.container}>
       <small>{currentValue}%</small>
       <progress value={currentValue} max={maxValue}></progress>
     </div>

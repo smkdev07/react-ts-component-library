@@ -1,16 +1,15 @@
 import React from 'react';
 
-import classes from './SMKCard.module.css';
+import classes from './SMKCard.module.scss';
 
 interface SMKCardProps {
-  id?: string;
   title: string;
   subTitle: string;
 }
 
 const SMKCard: React.FC<SMKCardProps> = ({ title, subTitle, ...props }) => {
   return (
-    <div className={classes.SMKCardContainer}>
+    <div className={classes.container}>
       <div className={classes.header}>
         <h3>{title}</h3>
         <h5>{subTitle}</h5>

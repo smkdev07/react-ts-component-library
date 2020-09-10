@@ -1,0 +1,31 @@
+@import '../../styles/_shared.scss';
+
+.container {
+  position: relative;
+  display: grid;
+  align-items: center;
+
+  small {
+    position: absolute;
+    left: 50%;
+    right: 50%;
+    color: map-get($color-scheme, light);
+  }
+
+  progress {
+    background-color: map-get($color-scheme, light);
+    width: 100%;
+    height: 2rem;
+    transition: all 1s;
+
+    &[value]::-webkit-progress-value {
+      background-color: map-get($color-scheme, primary);
+      transition: all 2s;
+    }
+
+    &[value]::-webkit-progress-bar,
+    &[value]::-webkit-progress-value {
+      border-radius: 4px;
+    }
+  }
+}

@@ -1,15 +1,17 @@
 import React from 'react';
 
-import classes from './SMKButton.module.css';
+import classes from './SMKButton.module.scss';
 
 interface SMKButtonProps {
-  id: string;
+  id?: string;
   label: string;
   name?: string;
   type?: 'button' | 'submit' | 'reset';
   disabled?: boolean;
   fullWidth?: boolean;
-  onClickHandler: (event: React.MouseEvent<HTMLButtonElement, MouseEvent>) => void;
+  onClickHandler: (
+    event: React.MouseEvent<HTMLButtonElement, MouseEvent>
+  ) => void;
 }
 
 const SMKButton: React.FC<SMKButtonProps> = ({
@@ -21,9 +23,9 @@ const SMKButton: React.FC<SMKButtonProps> = ({
   return (
     <button
       {...props}
-      className={classes.SMKButton}
       style={{ width: fullWidth ? '100%' : '' }}
       onClick={onClickHandler}
+      className={classes.button}
     >
       {label}
     </button>
