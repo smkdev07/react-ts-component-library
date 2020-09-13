@@ -1,0 +1,48 @@
+@import '../../styles/_shared.scss';
+
+.overlay {
+  position: fixed;
+  top: 0;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  background-color: rgba(0, 0, 0, 0.5);
+  opacity: 1;
+  z-index: 2;
+  backdrop-filter: blur(2px);
+
+  .container {
+    display: flex;
+    justify-content: center;
+
+    .loader {
+      position: absolute;
+      top: 35%;
+
+      .circular {
+        $border-props: 10px solid;
+        border: $border-props map-get($color-scheme, secondary-dark);
+        border-radius: 50%;
+        border-top: $border-props map-get($color-scheme, primary);
+        height: 75px;
+        width: 75px;
+        animation: spin 1s linear infinite;
+
+        &.darkmode {
+          border: $border-props map-get($color-scheme, secondary);
+          border-top: $border-props map-get($color-scheme, primary-dark);
+        }
+
+        @keyframes spin {
+          0% {
+            transform: rotate(0deg);
+          }
+
+          100% {
+            transform: rotate(360deg);
+          }
+        }
+      }
+    }
+  }
+}

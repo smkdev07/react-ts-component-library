@@ -1,8 +1,13 @@
 @import '../../styles/_shared.scss';
 
 .container {
+  background-color: map-get($color-scheme, secondary);
   border-radius: 4px;
   @include box-shadow();
+
+  &.darkmode {
+    background-color: map-get($color-scheme, secondary-dark);
+  }
 
   .item {
     border-bottom: 1px solid rgba(0, 0, 0, 0.1);
@@ -24,16 +29,24 @@
   .icon {
     font-size: 1.5rem;
     font-weight: bold;
-    color: map-get($color-scheme, valid);
+    color: map-get($color-scheme, secondary-dark);
     transition: all 0.3s;
-    transform: scaleX(2.5);
+    transform: rotate(-180deg) scaleX(2);
+
+    &.darkmode {
+      color: map-get($color-scheme, valid);
+    }
   }
 
   .expanded {
-    transform: rotate(-180deg) scaleX(2.25);
+    transform: scaleX(2);
   }
 
   .content {
     padding: 1rem 1.5rem;
+
+    p.darkmode {
+      color: map-get($color-scheme, secondary);
+    }
   }
 }

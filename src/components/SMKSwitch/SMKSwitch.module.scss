@@ -12,7 +12,7 @@
     width: 0;
 
     &:checked + .slider {
-      background-color: map-get($color-scheme, secondary-dark);
+      background-color: map-get($color-scheme, dark);
     }
 
     &:focus + .slider {
@@ -20,6 +20,7 @@
     }
 
     &:checked + .slider:before {
+      background-color: map-get($color-scheme, valid);
       transform: translateX(26px);
     }
   }
@@ -40,7 +41,7 @@
       position: absolute;
       left: 2px;
       bottom: 2px;
-      background-color: map-get($color-scheme, primary);
+      background-color: map-get($color-scheme, secondary-dark);
       border-radius: 50%;
       height: 20px;
       width: 20px;

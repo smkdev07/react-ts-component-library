@@ -9,11 +9,12 @@
     position: absolute;
     left: 50%;
     right: 50%;
-    color: map-get($color-scheme, light);
+    color: map-get($color-scheme, secondary);
   }
 
   progress {
-    background-color: map-get($color-scheme, light);
+    background-color: map-get($color-scheme, secondary);
+    border-radius: 4px;
     width: 100%;
     height: 2rem;
     transition: all 1s;

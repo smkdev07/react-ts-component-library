@@ -1,5 +1,6 @@
 import React, { useState } from 'react';
 
+import classnames from 'classnames';
 import classes from './App.module.scss';
 
 import SMKToolbar from './components/SMKToolbar/SMKToolbar';
@@ -8,6 +9,7 @@ import SMKCard from './components/SMKCard/SMKCard';
 import SMKAccordion from './components/SMKAccordion/SMKAccordion';
 import SMKProgressBar from './components/SMKProgressBar/SMKProgressBar';
 import SMKButton from './components/SMKButton/SMKButton';
+import SMKLoader from './components/SMKLoader/SMKLoader';
 
 const App: React.FC = () => {
   const [switchValue, setSwitchValue] = useState(false);
@@ -34,8 +36,12 @@ const App: React.FC = () => {
   };
 
   return (
-    <div className={classes.container}>
-      <SMKToolbar title="SMK Component Libary">
+    <div
+      className={classnames(classes.container, {
+        [`${classes.darkmode}`]: switchValue,
+      })}
+    >
+      <SMKToolbar title="SMK Component Libary" darkMode={switchValue}>
         <nav>
           <ul>
             <li>Home</li>
@@ -61,7 +67,7 @@ const App: React.FC = () => {
       <main>
         <section className={classes.cards}>
           <div className={classes.card}>
-            <SMKCard title="Card" subTitle="Sample 1">
+            <SMKCard title="Card" subTitle="Sample 1" darkMode={switchValue}>
               Lorem ipsum dolor sit amet consectetur adipisicing elit. Est
               similique molestiae illum repellendus illo et nostrum temporibus
               sit officiis necessitatibus dolore, aliquam ut dignissimos
@@ -69,14 +75,14 @@ const App: React.FC = () => {
             </SMKCard>
           </div>
           <div className={classes.card}>
-            <SMKCard title="Card" subTitle="Sample 2">
+            <SMKCard title="Card" subTitle="Sample 2" darkMode={switchValue}>
               Lorem ipsum dolor sit amet consectetur adipisicing elit. Aut quod
               laboriosam quos, adipisci dolor architecto rerum hic, perferendis
               quaerat sequi soluta earum at iure atque!
             </SMKCard>
           </div>
           <div className={classes.card}>
-            <SMKCard title="Card" subTitle="Sample 3">
+            <SMKCard title="Card" subTitle="Sample 3" darkMode={switchValue}>
               Lorem ipsum, dolor sit amet consectetur adipisicing elit. Ducimus
               excepturi enim sunt incidunt fugiat, tenetur ex eligendi, quasi,
               iure doloremque eaque! Esse repellendus et quas!
@@ -87,21 +93,41 @@ const App: React.FC = () => {
           <SMKAccordion
             items={accordionItems}
             onClickHandler={toggleAccordionItem}
+            darkMode={switchValue}
           />
         </section>
         <section className={classes.progressbar}>
-          <SMKProgressBar currentValue={progressValue} maxValue={100} />
-          <div>
+          <SMKProgressBar
+            currentValue={progressValue}
+            maxValue={100}
+            darkMode={switchValue}
+          />
+          <div className={classes.buttons}>
             <SMKButton
               id="update-progress"
               label="Update Progress"
               type="button"
+              color="primary"
+              darkMode={switchValue}
               onClickHandler={updateProgressValue}
+            />
+            <SMKButton
+              id="reset-progress"
+              label="Reset Progress"
+              type="button"
+              color="secondary"
+              darkMode={switchValue}
+              onClickHandler={() => setProgressValue(0)}
             />
           </div>
         </section>
+        {/* <section>
+          <SMKLoader isLoading={true} darkMode={switchValue}/>
+        </section> */}
       </main>
-      <footer>© SMK 2020. All Rights Reserved.</footer>
+      <footer className={classnames({ [`${classes.darkmode}`]: switchValue })}>
+        © SMK 2020. All Rights Reserved.
+      </footer>
     </div>
   );
 };

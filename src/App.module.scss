@@ -3,13 +3,17 @@
 .container {
   display: grid;
   grid-template-rows: auto 1fr auto;
-  background-color: map-get($color-scheme, bg);
+  background-color: map-get($color-scheme, light);
   height: 100vh;
   width: 100%;
+
+  &.darkmode {
+    background-color: map-get($color-scheme, dark);
+  }
 }
 
 li {
-  color: map-get($color-scheme, light);
+  color: map-get($color-scheme, secondary);
 }
 
 main {
@@ -32,14 +36,24 @@ main {
   .progressbar {
     display: grid;
     grid-gap: 0.5rem;
+
+    .buttons {
+      display: flex;
+      justify-content: space-evenly;
+      width: 100%;
+    }
   }
 }
 
 footer {
   font-size: 0.8rem;
   text-align: center;
-  color: map-get($color-scheme, light);
+  color: map-get($color-scheme, secondary);
   background-color: map-get($color-scheme, primary);
   box-shadow: 0 -3px 6px rgba(0, 0, 0, 0.15);
   padding: 0.25rem 0;
+
+  &.darkmode {
+    background-color: map-get($color-scheme, primary-dark);
+  }
 }

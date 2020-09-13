@@ -3,9 +3,16 @@
 .container {
   display: grid;
   grid-gap: 0.5rem;
+  background-color: map-get($color-scheme, secondary);
   border: 1px solid rgba(0, 0, 0, 0.1);
   border-radius: 4px;
   height: 100%;
+
+  &.darkmode {
+    background-color: map-get($color-scheme, secondary-dark);
+    border: none;
+    @include box-shadow();
+  }
 
   .header {
     display: grid;
@@ -15,13 +22,21 @@
     background-color: map-get($color-scheme, primary);
     padding: 0.5rem 1rem;
 
+    &.darkmode {
+      background-color: map-get($color-scheme, primary-dark);
+    }
+
     h3,
     h5 {
-      color: map-get($color-scheme, light);
+      color: map-get($color-scheme, secondary);
     }
   }
 
   .body {
     padding: 1rem;
+
+    &.darkmode {
+      color: map-get($color-scheme, secondary);
+    }
   }
 }

@@ -9,8 +9,12 @@
   @include box-shadow();
   padding: 1rem;
 
+  &.darkmode {
+    background-color: map-get($color-scheme, primary-dark);
+  }
+
   h2 {
-    color: map-get($color-scheme, light);
+    color: map-get($color-scheme, secondary);
   }
 
   ul {

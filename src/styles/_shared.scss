@@ -1,25 +1,22 @@
 $color-scheme: (
   primary: #706fd3,
   primary-dark: #40407a,
-  secondary: #f7f1e3,
-  secondary-dark: #aaa69d,
-  text: #121212,
-  bg: #fafafa,
+  secondary: #f5f5f5,
+  secondary-dark: #424242,
+  light: #fafafa,
+  dark: #303030,
   valid: #33d9b2,
   error: #ff5252,
   accent: #34ace0,
-  light: #fff,
-  dark: #84817a,
 );
 
 @mixin box-shadow() {
   box-shadow: 0 3px 6px rgba(0, 0, 0, 0.15), 0 3px 6px rgba(0, 0, 0, 0.22);
-  // transition: all 0.3s cubic-bezier(0.25, 0.8, 0.25, 1);
 }
 
 * {
   font-family: 'Nunito', sans-serif;
-  color: map-get($color-scheme, text);
+  color: map-get($color-scheme, dark);
   box-sizing: border-box;
   margin: 0;
   padding: 0;

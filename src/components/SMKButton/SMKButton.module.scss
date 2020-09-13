@@ -2,7 +2,6 @@
 
 .button {
   // box-sizing: border-box;
-  color: map-get($color-scheme, light);
   font: {
     family: inherit;
     size: 1rem;
@@ -10,7 +9,6 @@
   }
   letter-spacing: 1px;
   text-transform: uppercase;
-  background-color: map-get($color-scheme, primary);
   border: none;
   border-radius: 6px;
   @include box-shadow();
@@ -21,17 +19,42 @@
   transform: scale(1);
   transition: all 0.4s ease;
 
+  &.primary {
+    color: map-get($color-scheme, secondary);
+    background-color: map-get($color-scheme, primary);
+
+    &.darkmode {
+      background-color: map-get($color-scheme, primary-dark);
+    }
+  }
+
+  &.secondary {
+    color: map-get($color-scheme, primary);
+    background-color: map-get($color-scheme, secondary);
+
+    &.darkmode {
+      background-color: map-get($color-scheme, secondary-dark);
+    }
+  }
+
   &:hover {
     transform: scale(1.1);
   }
 
-  &:active {
-    background-color: map-get($color-scheme, primary-dark);
-  }
-
   &:disabled {
-    background-color: map-get($color-scheme, dark);
+    background-color: map-get($color-scheme, secondary-dark);
+    box-shadow: none;
     cursor: not-allowed;
     transform: none;
+
+    &.primary,
+    &.secondary {
+      color: map-get($color-scheme, secondary);
+    }
+
+    &.darkmode {
+      color: map-get($color-scheme, primary);
+      background-color: map-get($color-scheme, secondary);
+    }
   }
 }
