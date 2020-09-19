@@ -43,6 +43,36 @@ main {
       width: 100%;
     }
   }
+
+  .badges {
+    display: flex;
+    justify-content: center;
+    gap: 1rem;
+    margin: 2rem 0;
+    width: 100%;
+  }
+
+  .modal {
+    display: flex;
+    justify-content: center;
+    gap: 1rem;
+    width: 100%;
+
+    .modalcontent {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      gap: 1rem;
+      width: 100%;
+
+      h2,
+      p {
+        &.darkmode {
+          color: map-get($color-scheme, secondary);
+        }
+      }
+    }
+  }
 }
 
 footer {

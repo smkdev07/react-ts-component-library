@@ -1,0 +1,54 @@
+@import '../../styles/_shared.scss';
+
+.container {
+  background-color: map-get($color-scheme, primary);
+  padding: 5px 15px;
+
+  span {
+    color: map-get($color-scheme, secondary);
+  }
+
+  &.rounded {
+    border-radius: 16px;
+  }
+
+  &.error {
+    background-color: map-get($color-scheme, error);
+  }
+
+  &.info {
+    background-color: map-get($color-scheme, info);
+  }
+
+  &.warning {
+    background-color: map-get($color-scheme, warning);
+  }
+
+  &.success {
+    background-color: map-get($color-scheme, success);
+  }
+
+  &.clickable {
+    cursor: pointer;
+  }
+
+  &.darkmode {
+    background-color: map-get($color-scheme, primary-dark);
+
+    &.error {
+      background-color: map-get($color-scheme, error-dark);
+    }
+
+    &.info {
+      background-color: map-get($color-scheme, info-dark);
+    }
+
+    &.warning {
+      background-color: map-get($color-scheme, warning-dark);
+    }
+
+    &.success {
+      background-color: map-get($color-scheme, success-dark);
+    }
+  }
+}

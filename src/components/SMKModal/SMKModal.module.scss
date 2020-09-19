@@ -1,0 +1,35 @@
+@import '../../styles/_shared.scss';
+
+.backdrop {
+  display: none;
+  position: fixed;
+  top: 0;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  background-color: rgba(0, 0, 0, 0.5);
+  z-index: 2;
+}
+
+.container {
+  display: none;
+  position: fixed;
+  top: 30%;
+  left: 50%;
+  transform: translateX(-50%);
+  background-color: map-get($color-scheme, secondary);
+  border-radius: 4px;
+  @include box-shadow();
+  padding: 1.5rem;
+  max-height: 100vh;
+  min-width: 250px;
+  z-index: 3;
+
+  &.darkmode {
+    background-color: map-get($color-scheme, secondary-dark);
+  }
+}
+
+.open {
+  display: block;
+}

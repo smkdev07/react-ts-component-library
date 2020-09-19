@@ -10,11 +10,14 @@ import SMKAccordion from './components/SMKAccordion/SMKAccordion';
 import SMKProgressBar from './components/SMKProgressBar/SMKProgressBar';
 import SMKButton from './components/SMKButton/SMKButton';
 import SMKLoader from './components/SMKLoader/SMKLoader';
+import SMKBadge from './components/SMKBadge/SMKBadge';
+import SMKModal from './components/SMKModal/SMKModal';
 
 const App: React.FC = () => {
   const [switchValue, setSwitchValue] = useState(false);
   const [accordionItems, setAccordionItems] = useState(SAMPLE_ACCORDION_ITEMS);
   const [progressValue, setProgressValue] = useState(25);
+  const [showModal, setShowModal] = useState(false);
 
   const toggleAccordionItem = (index: number) => {
     setAccordionItems((prevState) => {
@@ -124,6 +127,82 @@ const App: React.FC = () => {
         {/* <section>
           <SMKLoader isLoading={true} darkMode={switchValue}/>
         </section> */}
+        <section className={classes.badges}>
+          <SMKBadge
+            type="none"
+            shape="sharp"
+            label="Badges"
+            darkMode={switchValue}
+          />
+          <SMKBadge
+            type="error"
+            shape="rounded"
+            label="Error"
+            clickable
+            darkMode={switchValue}
+          />
+          <SMKBadge
+            type="info"
+            shape="rounded"
+            label="Info"
+            clickable
+            darkMode={switchValue}
+          />
+          <SMKBadge
+            type="warning"
+            shape="rounded"
+            label="Warning"
+            clickable
+            darkMode={switchValue}
+          />
+          <SMKBadge
+            type="success"
+            shape="rounded"
+            label="Success"
+            clickable
+            darkMode={switchValue}
+          />
+        </section>
+        <section className={classes.modal}>
+          <SMKButton
+            id="show-modal"
+            label="Show Modal"
+            type="button"
+            color="secondary"
+            darkMode={switchValue}
+            onClickHandler={() => setShowModal(true)}
+          />
+          <SMKModal
+            isOpen={showModal}
+            backdropClickHandler={() => setShowModal(false)}
+            darkMode={switchValue}
+          >
+            <div className={classes.modalcontent}>
+              <h2
+                className={classnames({ [`${classes.darkmode}`]: switchValue })}
+              >
+                Lorem ipsum dolor sit amet.
+              </h2>
+              <p
+                className={classnames({ [`${classes.darkmode}`]: switchValue })}
+              >
+                Lorem ipsum dolor sit amet, consectetur adipisicing elit.
+                Molestias, tenetur cumque tempore error natus ipsam. Minus
+                tempora harum repudiandae possimus.
+              </p>
+              <div>
+                <SMKButton
+                  id="close-modal"
+                  label="Close"
+                  type="button"
+                  color="primary"
+                  darkMode={switchValue}
+                  onClickHandler={() => setShowModal(false)}
+                />
+              </div>
+            </div>
+          </SMKModal>
+        </section>
       </main>
       <footer className={classnames({ [`${classes.darkmode}`]: switchValue })}>
         © SMK 2020. All Rights Reserved.

@@ -20,7 +20,7 @@
     }
 
     &:checked + .slider:before {
-      background-color: map-get($color-scheme, valid);
+      background-color: map-get($color-scheme, success-dark);
       transform: translateX(26px);
     }
   }

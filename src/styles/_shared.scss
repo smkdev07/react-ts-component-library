@@ -5,9 +5,14 @@ $color-scheme: (
   secondary-dark: #424242,
   light: #fafafa,
   dark: #303030,
-  valid: #33d9b2,
   error: #ff5252,
-  accent: #34ace0,
+  error-dark: #b33939,
+  info: #34ace0,
+  info-dark: #227093,
+  warning: #ffb142,
+  warning-dark: #cc8e35,
+  success: #33d9b2,
+  success-dark: #218c74,
 );
 
 @mixin box-shadow() {
