@@ -42,7 +42,7 @@ const SMKAccordion: React.FC<SMKAccordionProps> = ({
               ^
             </p>
           </div>
-          {item.isExpanded ? (
+          {item.isExpanded && (
             <div className={classes.content}>
               <p
                 className={classnames({
@@ -52,7 +52,7 @@ const SMKAccordion: React.FC<SMKAccordionProps> = ({
                 {item.content}
               </p>
             </div>
-          ) : null}
+          )}
         </div>
       ))}
     </div>

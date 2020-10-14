@@ -2,7 +2,8 @@ import React, { useState, ChangeEvent, FocusEvent } from 'react';
 
 import { checkInputValidity } from '../../utility/validation';
 
-import classes from './SMKInput.module.css';
+import classnames from 'classnames';
+import classes from './SMKInput.module.scss';
 
 interface SMKInputProps {
   type: 'email' | 'number' | 'password' | 'tel' | 'text' | 'url';
@@ -19,6 +20,7 @@ interface SMKInputProps {
   min?: number;
   max?: number;
   step?: number;
+  darkMode?: boolean;
   onInputChange: (inputValue: string) => void;
 }
 
@@ -26,6 +28,7 @@ const SMKInput: React.FC<SMKInputProps> = ({
   type,
   id,
   label,
+  darkMode,
   onInputChange,
   ...props
 }) => {
@@ -34,14 +37,12 @@ const SMKInput: React.FC<SMKInputProps> = ({
   const [inputErrorMessage, setInputErrorMessage] = useState('');
 
   const onChangeHandler = (event: ChangeEvent<HTMLInputElement>) => {
-    event.persist();
-    !inputTouched && setInputTouched((prevState) => true);
+    !inputTouched && setInputTouched(true);
     onInputChange(event.target.value);
   };
 
   const onBlurHandler = (event: FocusEvent<HTMLInputElement>) => {
-    event.persist();
-    !inputTouched && setInputTouched((prevState) => true);
+    !inputTouched && setInputTouched(true);
     const { isValid, errorMessage } = checkInputValidity(
       type,
       label,
@@ -54,36 +55,40 @@ const SMKInput: React.FC<SMKInputProps> = ({
         max: props.max,
       }
     );
-    setInputIsValid((prevState) => isValid);
-    setInputErrorMessage((prevState) => errorMessage);
+    setInputIsValid(isValid);
+    setInputErrorMessage(errorMessage);
   };
 
-  const inputClasses = [classes.SMKInput];
-  if (inputTouched && inputIsValid) {
-    inputClasses.push(classes.SMKInputValid);
-  } else if (inputTouched && !inputIsValid) {
-    inputClasses.push(classes.SMKInputError);
-  }
-
   return (
-    <div className={classes.SMKIputContainer}>
-      <label htmlFor={id} className={classes.SMKInputLabel}>
+    <div className={classes.container}>
+      <label
+        htmlFor={id}
+        className={classnames({ [`${classes.darkmode}`]: darkMode })}
+      >
         {label}
-        {props.required ? (
-          <span className={classes.SMKInputRequired}>*</span>
-        ) : null}
+        {props.required && (
+          <span className={classnames({ [`${classes.darkmode}`]: darkMode })}>
+            *
+          </span>
+        )}
       </label>
       <input
         type={type}
         id={id}
         {...props}
-        onChange={(event) => onChangeHandler(event)}
-        onBlur={(event) => onBlurHandler(event)}
-        className={inputClasses.join(' ')}
+        onChange={onChangeHandler}
+        onBlur={onBlurHandler}
+        className={classnames(
+          { [`${classes.error}`]: inputTouched && !inputIsValid },
+          { [`${classes.valid}`]: inputTouched && inputIsValid },
+          { [`${classes.darkmode}`]: darkMode }
+        )}
       />
-      {inputTouched && !inputIsValid ? (
-        <p className={classes.SMKInputErrorText}>{inputErrorMessage}</p>
-      ) : null}
+      {inputTouched && !inputIsValid && (
+        <p className={classnames({ [`${classes.darkmode}`]: darkMode })}>
+          {inputErrorMessage}
+        </p>
+      )}
     </div>
   );
 };

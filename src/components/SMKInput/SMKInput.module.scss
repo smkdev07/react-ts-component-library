@@ -1,0 +1,95 @@
+@import '../../styles/_shared.scss';
+
+.container {
+  display: flex;
+  flex-direction: column;
+  justify-items: flex-start;
+  align-items: flex-start;
+  padding: 0.25rem;
+  width: 100%;
+
+  label {
+    font-weight: bold;
+
+    &.darkmode {
+      color: map-get($color-scheme, secondary);
+    }
+  }
+
+  span {
+    color: map-get($color-scheme, error);
+    font-size: 1rem;
+    margin-left: 2px;
+
+    &.darkmode {
+      color: map-get($color-scheme, error-dark);
+    }
+  }
+
+  input {
+    font-size: 1rem;
+    background-color: transparent;
+    border: none;
+    border-bottom: 2px solid map-get($color-scheme, primary);
+    outline: none;
+    width: 100%;
+
+    &.valid {
+      border-bottom: 2px solid map-get($color-scheme, success);
+
+      &.darkmode {
+        border-bottom: 2px solid map-get($color-scheme, success-dark);
+      }
+    }
+
+    &.error {
+      border-bottom: 2px solid map-get($color-scheme, error);
+
+      &.darkmode {
+        border-bottom: 2px solid map-get($color-scheme, error-dark);
+      }
+    }
+
+    &::placeholder {
+      color: lighten(map-get($color-scheme, dark), 50%);
+    }
+
+    &:focus {
+      border-bottom: 2px solid map-get($color-scheme, info);
+
+      &.darkmode {
+        border-bottom: 2px solid map-get($color-scheme, info-dark);
+      }
+    }
+
+    &:disabled {
+      border-bottom: 2px solid map-get($color-scheme, secondary-dark);
+      opacity: 0.25;
+      cursor: not-allowed;
+
+      &.darkmode {
+        border-bottom: 2px solid map-get($color-scheme, secondary);
+      }
+    }
+
+    &.darkmode {
+      color: map-get($color-scheme, secondary);
+      border-bottom: 2px solid map-get($color-scheme, primary-dark);
+
+      &::placeholder {
+        color: lighten(map-get($color-scheme, secondary-dark), 25%);
+      }
+    }
+  }
+
+  p {
+    color: map-get($color-scheme, error);
+    font-size: 0.8rem;
+    margin-top: 2px;
+    // max-width: 55ch;
+
+    &.darkmode {
+      color: map-get($color-scheme, error-dark);
+    }
+  }
+}

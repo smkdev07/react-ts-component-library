@@ -12,12 +12,19 @@ import SMKButton from './components/SMKButton/SMKButton';
 import SMKLoader from './components/SMKLoader/SMKLoader';
 import SMKBadge from './components/SMKBadge/SMKBadge';
 import SMKModal from './components/SMKModal/SMKModal';
+import SMKInput from './components/SMKInput/SMKInput';
 
 const App: React.FC = () => {
   const [switchValue, setSwitchValue] = useState(false);
   const [accordionItems, setAccordionItems] = useState(SAMPLE_ACCORDION_ITEMS);
   const [progressValue, setProgressValue] = useState(25);
   const [showModal, setShowModal] = useState(false);
+  const [textInput, setTextInput] = useState('');
+  const [numberInput, setNumberInput] = useState('');
+  const [telInput, setTelInput] = useState('');
+  const [emailInput, setEmailInput] = useState('');
+  const [passwordInput, setPasswordInput] = useState('');
+  const [urlInput, setUrlInput] = useState('www.sample.com');
 
   const toggleAccordionItem = (index: number) => {
     setAccordionItems((prevState) => {
@@ -67,7 +74,7 @@ const App: React.FC = () => {
           </ul>
         </nav>
       </SMKToolbar>
-      <main>
+      <main className={classnames({ [`${classes.darkmode}`]: switchValue })}>
         <section className={classes.cards}>
           <div className={classes.card}>
             <SMKCard title="Card" subTitle="Sample 1" darkMode={switchValue}>
@@ -202,6 +209,65 @@ const App: React.FC = () => {
               </div>
             </div>
           </SMKModal>
+        </section>
+        <section className={classes.inputs}>
+          <SMKInput
+            type="text"
+            id="text"
+            label="Text Input"
+            value={textInput}
+            placeholder="Enter text..."
+            required
+            darkMode={switchValue}
+            onInputChange={(inputValue) => setTextInput(inputValue)}
+          />
+          <SMKInput
+            type="number"
+            id="number"
+            label="Number Input"
+            value={numberInput}
+            min={18}
+            max={99}
+            step={2}
+            darkMode={switchValue}
+            onInputChange={(inputValue) => setNumberInput(inputValue)}
+          />
+          <SMKInput
+            type="tel"
+            id="tel"
+            label="Telephone Input"
+            value={telInput}
+            darkMode={switchValue}
+            onInputChange={(inputValue) => setTelInput(inputValue)}
+          />
+          <SMKInput
+            type="email"
+            id="email"
+            label="Email Input"
+            value={emailInput}
+            required
+            placeholder="Email input..."
+            darkMode={switchValue}
+            onInputChange={(inputValue) => setEmailInput(inputValue)}
+          />
+          <SMKInput
+            type="password"
+            id="password"
+            label="Password Input"
+            value={passwordInput}
+            required
+            darkMode={switchValue}
+            onInputChange={(inputValue) => setPasswordInput(inputValue)}
+          />
+          <SMKInput
+            type="url"
+            id="url"
+            label="URL"
+            value={urlInput}
+            disabled
+            darkMode={switchValue}
+            onInputChange={(inputValue) => setUrlInput(inputValue)}
+          />
         </section>
       </main>
       <footer className={classnames({ [`${classes.darkmode}`]: switchValue })}>

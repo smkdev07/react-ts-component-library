@@ -4,7 +4,7 @@
   display: grid;
   grid-template-rows: auto 1fr auto;
   background-color: map-get($color-scheme, light);
-  height: 100vh;
+  height: 100%;
   width: 100%;
 
   &.darkmode {
@@ -72,6 +72,21 @@ main {
         }
       }
     }
+  }
+
+  .inputs {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    grid-gap: 1rem;
+    margin: 2rem 0;
+
+    @media screen and (max-width: 768px) {
+      grid-template-columns: 1fr;
+    }
+  }
+
+  &.darkmode {
+    background-color: map-get($color-scheme, dark);
   }
 }
 
